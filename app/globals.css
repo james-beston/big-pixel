@@ -2,32 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    @apply relative min-h-screen bg-zinc-800 text-white;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .scene {
+    width: 160px;
+    height: 160px;
+    margin: 80px;
+    perspective: 320px;
+  }
+
+  .cube {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-80px);
+    transition: transform 1s;
+  }
+
+  .cube__face {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    line-height: 160px;
+    font-size: 32px;
+    font-weight: bold;
+    background: rgba(251, 253, 0, 0.96);
+    color: #27272a;
+    text-align: center;
+    transition: filter 1.2s; /* Add transition for smooth blurring */
+  }
+
+  .cube.show-front .cube__face--front,
+  .cube.show-right .cube__face--right,
+  .cube.show-back .cube__face--back,
+  .cube.show-left .cube__face--left,
+  .cube.show-top .cube__face--top,
+  .cube.show-bottom .cube__face--bottom {
+    filter: blur(0); /* No blur for the visible face */
+    color: #27272a;
+  }
+
+  .cube__face:not(.cube.show-front .cube__face--front):not(
+      .cube.show-right .cube__face--right
+    ):not(.cube.show-back .cube__face--back):not(
+      .cube.show-left .cube__face--left
+    ):not(.cube.show-top .cube__face--top):not(
+      .cube.show-bottom .cube__face--bottom
+    ) {
+    filter: blur(3px); /* Apply blur for all other faces */
+  }
+
+  /* Face transformations */
+  .cube__face--front {
+    transform: rotateY(0deg) translateZ(80px);
+  }
+  .cube__face--right {
+    transform: rotateY(90deg) translateZ(80px);
+  }
+  .cube__face--back {
+    transform: rotateY(180deg) translateZ(80px);
+  }
+  .cube__face--left {
+    transform: rotateY(-90deg) translateZ(80px);
+  }
+  .cube__face--top {
+    transform: rotateX(90deg) translateZ(80px);
+  }
+  .cube__face--bottom {
+    transform: rotateX(-90deg) translateZ(80px);
+  }
+
+  /* Cube state transformations */
+  .cube.show-front {
+    transform: translateZ(-80px) rotateY(0deg);
+  }
+  .cube.show-right {
+    transform: translateZ(-80px) rotateY(-90deg);
+  }
+  .cube.show-back {
+    transform: translateZ(-80px) rotateY(-180deg);
+  }
+  .cube.show-left {
+    transform: translateZ(-80px) rotateY(90deg);
+  }
+  .cube.show-top {
+    transform: translateZ(-80px) rotateX(-90deg);
+  }
+  .cube.show-bottom {
+    transform: translateZ(-80px) rotateX(90deg);
   }
 }
