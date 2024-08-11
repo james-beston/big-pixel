@@ -13,7 +13,7 @@ import clsx from '@/app/lib/utils/clsx';
 
 const navigation = [
   { name: 'print', href: '/print' },
-  { name: 'web', href: '/web' },
+  { name: 'digital', href: '/digital' },
   { name: 'about', href: '/about' },
   { name: 'news', href: '/news' },
   { name: 'contact', href: '/contact' },

@@ -5,13 +5,13 @@ import Link from 'next/link';
 const disciplines = [
   {
     key: 1,
-    name: 'strategy',
+    name: 'print',
     face: 'top',
     href: '/print',
   },
   {
     key: 2,
-    name: 'brand',
+    name: 'digital',
     face: 'right',
     href: '',
   },
@@ -65,16 +65,16 @@ export default function Home() {
           <div className={`cube show-` + face}>
             <div className='cube__face cube__face--front' />
             <div className='cube__face cube__face--back'>about</div>
-            <div className='cube__face cube__face--right'>brand</div>
+            <div className='cube__face cube__face--right'>digital</div>
             <div className='cube__face cube__face--left'>contact</div>
-            <div className='cube__face cube__face--top'>strategy</div>
+            <div className='cube__face cube__face--top'>print</div>
             <div className='cube__face cube__face--bottom'>news</div>
           </div>
         </div>
       </div>
       <div className='flex-0 flex items-center justify-center py-12'>
         <p className='text-center text-xl text-zinc-300'>
-          A small, yet perfectly formed digital consultancy
+          A small, yet perfectly formed design agency
         </p>
       </div>
     </main>

@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Content from './content.mdx';
 import Branding from './branding.mdx';
+import AnimatedCMYK from './animated-cmyk';
 import AnimatedCard from './animated-card';
 
 export default function PrintPage() {
@@ -10,15 +10,9 @@ export default function PrintPage() {
         Big in Print
       </h1>
       <div className='flex flex-col xl:flex-row-reverse justify-center xl:align-middle'>
-        <div className='xl:w-1/2'>
-          <Image
-            src='/images/print/cmyk-layers.png'
-            alt='CMYK layers'
-            width={640}
-            height={557}
-            quality={100}
-          />
-        </div>  
+        <div className='h-96 w-96 md:h-[480px] md:w-[480px] xl:h-[640px] xl:w-1/2'>
+          <AnimatedCMYK />
+        </div> 
         <div className='xl:w-1/2'>
           <div className='prose prose-sm prose-pixel md:prose-base lg:prose-xl prose-th:text-yellow-200'>
             <Content />
