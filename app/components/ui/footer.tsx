@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import Icon from '@/app/lib/utils/icon';
-
+import Icon from '../icon';
 export default function Footer() {
   
   var year = new Date().getFullYear();
