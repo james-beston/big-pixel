@@ -3,7 +3,7 @@
 import { useFormState } from 'react-dom'
 import { createSubscriber } from '@/app/actions';
 import { NoFrameInput } from './ui/input';
-import clsx from '../../lib/utils/clsx';
+import clsx from '@/lib/utils/clsx';
 
 const initialState = {
   type:'',

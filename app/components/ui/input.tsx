@@ -1,4 +1,4 @@
-import clsx from '@/utils/clsx';
+import clsx from '@/lib/utils/clsx';
 
 export function NoFrameInput({
   label,
