@@ -1,4 +1,7 @@
-import AnimatedLaptop from "./animated-laptop";
+import AnimatedLaptop from './animated-laptop';
+import AnimatedIphone from './animated-iphone';
+import Websites from './websites.mdx';
+import SEO from './seo.mdx';
 
 export default function DigitalPage() {
   return (
@@ -7,8 +10,25 @@ export default function DigitalPage() {
         Big in Digital
       </h1>
       <div className='flex flex-col xl:flex-row-reverse justify-center xl:align-middle'>
-        <div className='w-screen h-full'>
+        <div className='flex xl:w-3/5 align-middle justify-center overflow-clip'>
           <AnimatedLaptop />
+        </div> 
+        <div className='xl:w-1/2'>
+          <div className='prose prose-sm prose-pixel md:prose-base lg:prose-xl prose-th:text-yellow-200'>
+            <Websites />
+          </div>
+        </div>
+      </div>
+      
+      <div className='flex flex-col xl:flex-row justify-center xl:align-middle'>
+        
+        <div className='h-96 w-96 md:h-[480px] md:w-[480px] xl:h-[640px] xl:w-1/2'>
+          <AnimatedIphone />
+        </div>
+        <div className='xl:w-1/2'>
+          <div className='prose prose-sm prose-pixel md:prose-base lg:prose-xl prose-th:text-yellow-200'>
+            <SEO />
+          </div>
         </div>
       </div>
     </article>

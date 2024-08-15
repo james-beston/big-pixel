@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Footer from './components/ui/footer';
 
 const disciplines = [
   {
@@ -13,25 +14,25 @@ const disciplines = [
     key: 2,
     name: 'digital',
     face: 'right',
-    href: '',
+    href: '/digital',
   },
   {
     key: 3,
     name: 'about',
     face: 'back',
-    href: '',
+    href: '/about',
   },
   {
     key: 4,
     name: 'news',
     face: 'bottom',
-    href: '',
+    href: '/news',
   },
   {
     key: 5,
     name: 'contact',
     face: 'left',
-    href: '',
+    href: '/contact',
   },
 ];
 
@@ -39,6 +40,7 @@ export default function Home() {
   const [face, setFace] = useState('front');
 
   return (
+    <>
     <main className='flex min-h-screen flex-col items-center'>
       <div className='mt-12 grid gap-12 text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-5'>
         {disciplines.map((discipline) => (
@@ -78,5 +80,7 @@ export default function Home() {
         </p>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

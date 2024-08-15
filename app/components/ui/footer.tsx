@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='lg:mt-12 flex items-center h-24 lg:max-w-7xl xl:mx-auto justify-between'>
+    <footer className='lg:mt-12 flex items-center h-24 lg:max-w-7xl mx-6 xl:mx-auto justify-between'>
         <p className='text-zinc-400 text-xs sm:text-sm'>
           &copy; {year} Big Pixel. All rights reserved.
         </p>
