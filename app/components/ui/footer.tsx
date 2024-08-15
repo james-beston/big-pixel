@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import Icon from '../icon';
+import GetIcon from '../icon';
+
 export default function Footer() {
   
   var year = new Date().getFullYear();
@@ -40,7 +41,7 @@ export default function Footer() {
             >
               <span className='sr-only'>{social.title}</span>
               <span>
-                <Icon icon={social.icon} size={18} weight='brands' />
+                <GetIcon icon={social.icon} size={18} weight='brands' />
               </span>
             </Link>
           ))}
