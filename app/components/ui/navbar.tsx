@@ -9,7 +9,7 @@ import {
   XMarkIcon,
   ArrowRightEndOnRectangleIcon,
 } from '@heroicons/react/24/outline';
-import clsx from '@/app/lib/utils/clsx';
+import clsx from '@/utils/clsx';
 
 const navigation = [
   { name: 'print', href: '/print' },

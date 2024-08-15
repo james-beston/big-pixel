@@ -1,4 +1,4 @@
-import Icon from '@/app/lib/utils/icon';
+import Icon from '@/lib/utils/icon';
 import Newsletter from '@/app/components/newsletter';
 
 export default function ContactPage() {

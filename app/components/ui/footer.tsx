@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Icon from '@/app/lib/utils/icon';
+import Icon from '@/lib/utils/icon';
 
 export default function Footer() {
   
