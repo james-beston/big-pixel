@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import GetIcon from '../icon';
+import Icon from '@/app/lib/utils/icon';
 
 export default function Footer() {
   
@@ -41,7 +41,7 @@ export default function Footer() {
             >
               <span className='sr-only'>{social.title}</span>
               <span>
-                <GetIcon icon={social.icon} size={18} weight='brands' />
+                <Icon icon={social.icon} size={18} weight='brands' />
               </span>
             </Link>
           ))}
