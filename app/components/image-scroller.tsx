@@ -60,6 +60,7 @@ export default function ImageScroller({
     <div>
       <canvas
         id={id}
+        className='h-96 w-96 md:h-[480px] md:w-[480px] xl:h-[640px] xl:w-[640px]'
       />
     </div>  
   )
