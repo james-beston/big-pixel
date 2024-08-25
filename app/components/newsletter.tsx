@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useFormState } from 'react-dom'
 import { createSubscriber } from '@/app/actions';
 import { NoFrameInput } from './ui/input';
@@ -12,10 +12,39 @@ const initialState = {
   message: 'No spam, ever. You can unsubscribe at anytime.',
 }
 
-export default function Newsletter() {
+export default async function Newsletter() {
   
   const [state, formAction, pending] = useFormState(createSubscriber, initialState);
-  const captchaRef = useRef(null);
+  
+  const captchaRef = useRef<ReCAPTCHA>(null);
+  const [isVerified, setIsVerified] = useState(false);
+
+  async function handleCaptcha(token: string | null) {
+    try {
+      if (token) {
+        await fetch("/api/captcha", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        setIsVerified(true);
+      }
+    } catch (e) {
+      setIsVerified(false);
+    }
+  }
+
+  const handleChange = (token: string | null) => {
+    handleCaptcha(token);
+  }
+
+  function handleExpired() {
+    setIsVerified(false);
+  }
+
 
   if (state?.type === 'success') {
     return (
@@ -61,6 +90,8 @@ export default function Newsletter() {
         ref={captchaRef}
         size='invisible'
         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+        onChange={handleChange}
+        onExpired={handleExpired}
       />
       <div className='h-8 flex items-center justify-center space-x-2'>
         <div className={clsx(
@@ -88,6 +119,7 @@ export default function Newsletter() {
       </div>
       <button
         type='submit'
+        disabled={pending || !isVerified}
         className='text-lg xl:text-xl px-6 py-3 font-medium leading-6 text-zinc-800 bg-primary rounded-md hover:bg-yellow-400 transition-colors duration-300 ease-in-out'>
         {pending ? 'Processing...' : 'Subscribe'}
       </button>
