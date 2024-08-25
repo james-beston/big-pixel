@@ -59,7 +59,7 @@ export default function Newsletter() {
       <input type='hidden' name='userGroup' value='Website signups'></input>
       <ReCAPTCHA
         ref={captchaRef}
-        size="normal"
+        size='invisible'
         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
       />
       <div className='h-8 flex items-center justify-center space-x-2'>
