@@ -1,9 +1,11 @@
 'use client';
 
+import { useRef } from 'react';
 import { useFormState } from 'react-dom'
 import { createSubscriber } from '@/app/actions';
 import { NoFrameInput } from './ui/input';
 import clsx from '@/lib/utils/clsx';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const initialState = {
   type:'',
@@ -13,6 +15,7 @@ const initialState = {
 export default function Newsletter() {
   
   const [state, formAction, pending] = useFormState(createSubscriber, initialState);
+  const captchaRef = useRef(null);
 
   if (state?.type === 'success') {
     return (
@@ -54,6 +57,11 @@ export default function Newsletter() {
         placeholder='Enter your last name'
       />
       <input type='hidden' name='userGroup' value='Website signups'></input>
+      <ReCAPTCHA
+        ref={captchaRef}
+        size="normal"
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+      />
       <div className='h-8 flex items-center justify-center space-x-2'>
         <div className={clsx(
           'flex items-center justify-center px-2 py-1 rounded-md',

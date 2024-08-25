@@ -14,7 +14,25 @@ const schema = z.object({
   }),
 });
 
+const captchaSecret = process.env.RECAPTCHA_SECRET_KEY!;
+
 export async function createSubscriber(prevState: any, formData: FormData) {
+
+  const captchaResponse = formData.get('g-recaptcha-response');
+
+  if (!captchaResponse) {
+    return { type: 'error', message: 'Please complete the captcha' };
+  }
+
+  const captchaValidation = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${captchaSecret}&response=${captchaResponse}`, {
+    method: 'POST',
+  });
+
+  const captchaValidationData = await captchaValidation.json();
+
+  if (!captchaValidationData.success) {
+    return { type: 'error', message: 'Captcha validation failed' };
+  }
 
   const validatedFields = schema.safeParse({
     email: formData.get('email'),
