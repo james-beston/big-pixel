@@ -1,50 +1,18 @@
 'use client';
 
-import { useRef, useState } from 'react';
 import { useFormState } from 'react-dom'
 import { createSubscriber } from '@/app/actions';
 import { NoFrameInput } from './ui/input';
 import clsx from '@/lib/utils/clsx';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const initialState = {
   type:'',
   message: 'No spam, ever. You can unsubscribe at anytime.',
 }
 
-export default async function Newsletter() {
+export default function Newsletter() {
   
   const [state, formAction, pending] = useFormState(createSubscriber, initialState);
-  
-  const captchaRef = useRef<ReCAPTCHA>(null);
-  const [isVerified, setIsVerified] = useState(false);
-
-  async function handleCaptcha(token: string | null) {
-    try {
-      if (token) {
-        await fetch("/api/captcha", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        });
-        setIsVerified(true);
-      }
-    } catch (e) {
-      setIsVerified(false);
-    }
-  }
-
-  const handleChange = (token: string | null) => {
-    handleCaptcha(token);
-  }
-
-  function handleExpired() {
-    setIsVerified(false);
-  }
-
 
   if (state?.type === 'success') {
     return (
@@ -85,14 +53,6 @@ export default async function Newsletter() {
         required={true}
         placeholder='Enter your last name'
       />
-      <input type='hidden' name='userGroup' value='Website signups'></input>
-      <ReCAPTCHA
-        ref={captchaRef}
-        size='invisible'
-        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-        onChange={handleChange}
-        onExpired={handleExpired}
-      />
       <div className='h-8 flex items-center justify-center space-x-2'>
         <div className={clsx(
           'flex items-center justify-center px-2 py-1 rounded-md',
@@ -119,8 +79,11 @@ export default async function Newsletter() {
       </div>
       <button
         type='submit'
-        disabled={pending || !isVerified}
-        className='text-lg xl:text-xl px-6 py-3 font-medium leading-6 text-zinc-800 bg-primary rounded-md hover:bg-yellow-400 transition-colors duration-300 ease-in-out'>
+        disabled={pending}
+        className={clsx(
+            pending ? 'bg-zinc-400' : 'bg-primary hover:bg-yellow-500',
+            'text-lg xl:text-xl px-6 py-3 font-medium leading-6rounded-md text-zinc-800 transition-colors duration-300 ease-in-out'
+        )}>
         {pending ? 'Processing...' : 'Subscribe'}
       </button>
     </form>
