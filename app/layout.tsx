@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import localFont from 'next/font/local';
+import { GeistSans } from 'geist/font/sans';
 import './globals.css';
-
-const geist = localFont({
-  src: './fonts/GeistVF.woff2',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Big Pixel',
@@ -21,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={geist.className}>
+      <body className={GeistSans.className}>
         {children}
         <Analytics />
         <SpeedInsights />
