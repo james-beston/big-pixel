@@ -1,13 +1,12 @@
 'use server'
 
 import { z } from 'zod';
-import sgMail from '@sendgrid/mail';
+import MailerLite from '@mailerlite/mailerlite-nodejs';
 
-const client = require('@sendgrid/client');
+const mailerlite = new MailerLite({
+  api_key: process.env.MAILERLITE_API_KEY!,
+});
 
-client.setApiKey(process.env.SENDGRID_API_KEY!);
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 const schema = z.object({
   email: z.string({
@@ -34,18 +33,16 @@ export async function createSubscriber(prevState: any, formData: FormData) {
     return { type: 'error', message: validatedFields.error.errors[0].message };
   }
 
-  const validateData = {
-    'source': 'Newsletter Signup',
-    'email': validatedFields.data.email,
-  }
+  const params = {
+    email: validatedFields.data.email,
+    fields: {
+      name: validatedFields.data.firstName,
+      last_name: validatedFields.data.lastName,
+    },
+    groups: ['130842370640971232'],
+  };
 
-  const validateRequest: any = {
-    url: `/v3/validations/email`,
-    method: 'POST',
-    body: validateData,
-  }
-
-  const validateEmail = client.request(validateRequest)
+  mailerlite.subscribers.createOrUpdate(params)
     .then(([response, body]: any) => {
       console.log(response.statusCode);
       console.log(body);
@@ -55,53 +52,4 @@ export async function createSubscriber(prevState: any, formData: FormData) {
       console.error(error);
       return false
     });
-
-  if (!validateEmail) {
-    return { type: 'error', message: 'An error occurred. Please try again later. 🙀' };
-  }
-
-  const data = {
-    list_ids: [
-      'd0b9b3c0-8f73-4f22-a80f-a34911ea88e4'
-    ],
-    contacts: [
-      {
-        email: validatedFields.data.email,
-        first_name: validatedFields.data.firstName,
-        last_name: validatedFields.data.lastName,
-      }
-    ]
-  }
-  
-  const request: any = {
-    url: `/v3/marketing/contacts`,
-    method: 'PUT',
-    body: data,
-  }
-
-  const result = client.request(request)
-      .then(([response, body]: any) => {
-        console.log(response.statusCode);
-        console.log(body);
-        return true
-      })
-      .catch((error: any) => {
-        console.error(error);
-        return false
-      });
-
-  if (result) {
-    const messsage = {
-      to: validatedFields.data.email,
-      from: 'hello@big-pixel.com',
-      templateId: 'd-e7650150634d49d2b45211448a743a4f',
-      dynamicTemplateData: {
-        first_name: validatedFields.data.firstName,
-      },
-    };
-    sgMail.send(messsage);
-    return { type: 'success', message: 'Thank you for subscribing! 🎉' };
-  } else {
-    return { type: 'error', message: 'An error occurred. Please try again later. 🙀' };
-  }
 }
