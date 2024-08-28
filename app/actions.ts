@@ -49,10 +49,10 @@ export async function createSubscriber(prevState: any, formData: FormData) {
     .then(([response, body]: any) => {
       console.log(response.statusCode);
       console.log(body);
-      return true
+      return { type: 'success', message: 'Thank you for subscribing! 👍' };
     })
     .catch((error: any) => {
       console.error(error);
-      return false
+      return { type: 'error', message: 'An error occurred. Please try again later.' };
     });
 }
