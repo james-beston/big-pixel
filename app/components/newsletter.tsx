@@ -53,6 +53,15 @@ export default function Newsletter() {
         required={true}
         placeholder='Enter your last name'
       />
+      <input
+        aria-label='honeypot'
+        type='text'
+        className='hidden'
+        data-inputmask=''
+        name='honeypot'
+        placeholder='Leave this field blank'
+        autoComplete=''
+      />
       <div className='h-8 flex items-center justify-center space-x-2'>
         <div className={clsx(
           'flex items-center justify-center px-2 py-1 rounded-md',

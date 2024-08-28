@@ -29,6 +29,8 @@ export async function createSubscriber(prevState: any, formData: FormData) {
     lastName: formData.get('lastName'),
   });
 
+  const honeypot = formData.get('honeypot')
+
   if (!validatedFields.success) {
     return { type: 'error', message: validatedFields.error.errors[0].message };
   }
@@ -38,6 +40,7 @@ export async function createSubscriber(prevState: any, formData: FormData) {
     fields: {
       name: validatedFields.data.firstName,
       last_name: validatedFields.data.lastName,
+      honeypot: honeypot,
     },
     groups: ['130842370640971232'],
   };
