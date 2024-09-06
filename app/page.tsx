@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
     <main className='flex min-h-screen flex-col items-center'>
-      <div className='mt-12 grid gap-12 text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-5'>
+      <div className='flex justify-around mt-12 text-sm md:text-base text-center lg:mb-0 w-full lg:max-w-5xl'>
         {disciplines.map((discipline) => (
           <Link
             key={discipline.key}

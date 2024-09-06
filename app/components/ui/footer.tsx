@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='lg:mt-12 flex items-center h-24 lg:max-w-7xl mx-6 xl:mx-auto justify-between'>
+    <footer className='lg:mt-12 flex flex-col lg:flex-row items-center h-24 lg:max-w-7xl mx-6 xl:mx-auto justify-between'>
         <div className='flex flex-col space-y-2'>
           <p className='text-zinc-400 text-xs sm:text-sm'>
             &copy; {year} Big Pixel Consulting Ltd. All rights reserved.
@@ -37,7 +37,7 @@ export default function Footer() {
             Hardwick House, Agricultural Hall Plain, Norwich, England, NR1 3FS
           </p>
         </div>
-        <div className='flex space-x-4'>
+        <div className='py-4 md:py-0 flex space-x-4'>
           {socials.map((social) => (
             <Link
               key={social.key}
