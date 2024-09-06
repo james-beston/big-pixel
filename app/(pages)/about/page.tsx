@@ -14,7 +14,7 @@ export default function AboutPage() {
             width={320}
             height={320}
             alt='Adrian'
-            className='rounded-full shadow-xl border-4 border-zinc-200'
+            className='rounded-full border-4 border-zinc-200'
           />
         </div> 
         <div className='xl:w-2/3'>

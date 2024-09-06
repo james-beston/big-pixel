@@ -28,9 +28,15 @@ export default function Footer() {
 
   return (
     <footer className='lg:mt-12 flex items-center h-24 lg:max-w-7xl mx-6 xl:mx-auto justify-between'>
-        <p className='text-zinc-400 text-xs sm:text-sm'>
-          &copy; {year} Big Pixel. All rights reserved.
-        </p>
+        <div className='flex flex-col space-y-2'>
+          <p className='text-zinc-400 text-xs sm:text-sm'>
+            &copy; {year} Big Pixel Consulting Ltd. All rights reserved.
+          </p>
+          <p className='text-zinc-400 text-xs'>
+            Registered in England and Wales No. 15928040 < br />
+            Hardwick House, Agricultural Hall Plain, Norwich, England, NR1 3FS
+          </p>
+        </div>
         <div className='flex space-x-4'>
           {socials.map((social) => (
             <Link

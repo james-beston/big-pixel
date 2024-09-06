@@ -16,6 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        <meta property='og:image' content='<generated>' />
+        <meta property='og:image:type' content='<generated>' />
+        <meta property='og:image:width' content='<generated>' />
+        <meta property='og:image:height' content='<generated>' />
+        <meta property='og:image:alt' content='Big Pixel Consultancy Ltd.' />
+      </head>
       <body className={GeistSans.className}>
         {children}
         <Analytics />
