@@ -4,6 +4,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
 export const metadata: Metadata = {
   title: 'Big Pixel',
   description: 'A small, yet perfectly formed design agency.',

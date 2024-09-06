@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import Icon from '@/lib/utils/icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@awesome.me/kit-5cfa867163/icons';
 
 export default function Footer() {
   
@@ -9,19 +10,19 @@ export default function Footer() {
     {
       key: 1,
       title: 'Instagram',
-      icon: 'instagram',
+      icon: fab.faInstagram,
       href: 'https://www.instagram.com/bigpixeldotcom/',
     },
     {
       key: 2,
       title: 'LinkedIn',
-      icon: 'linkedin-in',
+      icon: fab.faLinkedinIn,
       href: 'https://www.linkedin.com/company/bigpixeldotcom/',
     },
     {
       key: 3,
       title: 'Threads',
-      icon: 'threads',
+      icon: fab.faThreads,
       href: 'https://www.threads.net/@bigpixeldotcom',
     },
   ];
@@ -47,7 +48,7 @@ export default function Footer() {
             >
               <span className='sr-only'>{social.title}</span>
               <span>
-                <Icon icon={social.icon} size={18} weight='brands' />
+              <FontAwesomeIcon icon={social.icon} fixedWidth />
               </span>
             </Link>
           ))}

@@ -15,6 +15,9 @@
     "prettier:check": "prettier --check --ignore-unknown ."
   },
   "dependencies": {
+    "@awesome.me/kit-5cfa867163": "^1.0.46",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@google-cloud/recaptcha-enterprise": "^5.10.0",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
