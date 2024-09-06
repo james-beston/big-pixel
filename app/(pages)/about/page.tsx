@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Adrian from './adrian.mdx';
+import adrian from './adrian.jpg';
 
 export default function AboutPage() {
   return (
@@ -8,11 +9,9 @@ export default function AboutPage() {
         Meet the Team
       </h1>
       <div className='flex flex-col xl:flex-row space-y-12 xl:space-y-0 xl:space-x-12 align-middle'>
-        <div className='w-48 xl:w-1/3'>
+        <div className='w-48 xl:w-72'>
           <Image
-            src='/images/me-2024.jpg'
-            width={320}
-            height={320}
+            src={adrian}
             alt='Adrian'
             className='rounded-full border-4 border-zinc-200'
           />
